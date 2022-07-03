@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import Axios from "axios";
 
 const Login = () => {
   const [username, setUserName] = useState("");
@@ -17,6 +18,15 @@ const Login = () => {
     console.log(username, password);
   };
 
+  const login = () => {
+    Axios.post("http://localhost:3001/login", {
+      username: username,
+      password: password,
+    }).then((response) => {
+      console.log(response);
+    });
+  };
+
   return (
     <Fragment>
       <label>Login Here</label>
@@ -25,7 +35,7 @@ const Login = () => {
         <input onChange={userNameHandler} />
         <label>password</label>
         <input type="password" onChange={userPasswordHandler} />
-        <button>Login</button>
+        <button onClick={login}>Login</button>
       </form>
     </Fragment>
   );
