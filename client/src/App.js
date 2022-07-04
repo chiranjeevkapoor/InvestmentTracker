@@ -1,13 +1,16 @@
 import "./App.css";
-import { Fragment } from "react";
-import Login from "./components/Login/Login";
-import Register from "./components/Register/Register";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import UserPage from "./components/UserPage/UserPage";
+import Home from "./components/Home/Home";
 function App() {
   return (
-    <Fragment>
-      <Register />
-      <Login />
-    </Fragment>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/userPage" element={<UserPage />} />
+      </Routes>
+    </Router>
   );
 }
 

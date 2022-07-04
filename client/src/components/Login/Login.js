@@ -1,9 +1,12 @@
 import { Fragment, useState } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
+  let navigate = useNavigate();
 
   const userNameHandler = (e) => {
     setUserName(e.target.value);
@@ -22,9 +25,9 @@ const Login = () => {
     Axios.post("http://localhost:3001/login", {
       username: username,
       password: password,
-    }).then((response) => {
-      console.log(response);
     });
+
+    navigate("/userPage");
   };
 
   return (
