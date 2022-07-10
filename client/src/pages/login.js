@@ -42,21 +42,10 @@ const login = () => {
 
      
     }
-
-
     
   });
   
-  
-  
-
- 
-
-  
 };
-
-
-
 
   return (
     <div className="App">

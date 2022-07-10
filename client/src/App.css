@@ -40,3 +40,13 @@
 .home{
   text-align: center;
 }
+
+.form-control{
+  margin-bottom: 10px;
+  margin-right: 10px;;
+}
+.graph{
+  max-width: 800px;
+  max-height: 700px;
+ 
+}
