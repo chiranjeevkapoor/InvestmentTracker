@@ -21,7 +21,11 @@ export default function Home(props){
     const[amount, setAmount] = React.useState('')
     const[timePeriod, setTimePeriod] = React.useState()
     const[roi, setroi] = React.useState()
+
     const[click, setclick] = React.useState(false)
+
+
+// So this useEffect is for the onChange event for the amount value inserted by the user so that this event does not gets triggered in between .
 
     React.useEffect(() => {
         const timeout = setTimeout(() => {
@@ -34,17 +38,18 @@ export default function Home(props){
 
       
       
-    
+    // Avoid console.logs
         async function compon() {
         const url = `https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY&symbol=${stockName}&apikey=HO5KPYZF6BFR5PKK`
         const response = await fetch(url);
         const data =  await response.json()
         console.log((data['Meta Data']['3. Last Refreshed']))
-    
+    // This present takes the value from the data which is a present date 
         const present =   (data['Meta Data']['3. Last Refreshed'])
         let date = new Date()
         let year = date.getFullYear()
         let month = date.getMonth()
+        // This year takes the value from the user and calculates the year which the user want to calculate the profits from.
         if(timePeriod === 2){
             year = year - 2;
         }
@@ -54,12 +59,15 @@ export default function Home(props){
         else{
             year = year - 10;
         }
+        // This tpdate function calculates the last date of that month of the year
         let tpdate = new Date(year, month+1, 1);
         const perf = tpdate.toISOString().split('T')[0];
 
         console.log(data['Monthly Time Series'][present]['4. close'])
         console.log(data['Monthly Time Series'][perf]['4. close'])
+
         const a = data['Monthly Time Series'][present]['4. close']
+        
         const b = data['Monthly Time Series'][perf]['4. close']
         
         const cem = (amount/a);
